@@ -374,56 +374,75 @@ return det;
     return invout;    
      
  }
-//   Matrix concatenate(const Matrix& matrix1, const Matrix& matrix2, int axis=0){
-//       //=0 esh ghalat nist?
-//       //age cols ha baham barabar nabashan fekr konam segmentation error bokhorim
-//     size_t rows1 = matrix1. size();
-//     size_t cols1 = matrix1[0]. size();
-//     size_t rows2 = matrix2. size();
-//     size_t cols2 = matrix2[0]. size();
-//     if (axis==0)
-//     {
-//         Matrix result ;
-//         for (size_t i = 0; i < rows1; i++)
-//         {
-//             vector<double> vec;
-//         for (size_t j = 0; j < cols1; j++)
-//         {
+  Matrix concatenate(const Matrix& matrix1, const Matrix& matrix2, int axis ){
+      //=0 esh ghalat nist?
+      //age cols ha baham barabar nabashan fekr konam segmentation error bokhorim
+    Matrix result ;
+    size_t rows1 = matrix1. size();
+    size_t cols1 = matrix1[0]. size();
+    size_t rows2 = matrix2. size();
+    size_t cols2 = matrix2[0]. size();
+    if (axis==0)
+    {
+        if (cols1!=cols2)
+        {
+            throw logic_error("Error");
+        }
+        
+        for (size_t i = 0; i < rows1; i++)
+        {
+            vector<double> vec;
+        for (size_t j = 0; j < cols1; j++)
+        {
             
-//             vec.push_back(matrix1[i][j]);
+            vec.push_back(matrix1[i][j]);
             
-//         }
-//         result.push_back(vec);
+        }
+        result.push_back(vec);
        
             
-//         }
-//         for (size_t i = 0; i < rows2; i++)
-//         {
-//             vector<double> vec;
-//         for (size_t j = 0; j < cols2; j++)
-//         {
-//            vec.push_back(matrix2[i][j]);
+        }
+        for (size_t i = 0; i < rows2; i++)
+        {
+            vector<double> vec;
+        for (size_t j = 0; j < cols2; j++)
+        {
+           vec.push_back(matrix2[i][j]);
             
-//         }
-//         result.push_back(vec);
+        }
+        result.push_back(vec);
        
             
-//         }
+        }
         
-//       return result ;  
-//      }
-//     // if (axis==1)
-//     // {
-//     //     for (size_t i = 0; i < count; i++)
-//     //     {
-//     //         /* code */
-//     //     }
+       
+     }
+    if (axis==1)
+    {
+        if (rows1!=rows2)
+        {
+            throw logic_error("Error");
+        }
+        for (size_t i = 0; i < rows1; i++)
+        {
+            vector<double> vec;
+            for (size_t j = 0; j < cols1; j++)
+            {
+                vec.push_back(matrix1[i][j]);
+                
+            }
+            for (size_t k = 0; k < cols2; k++)
+            {
+                vec.push_back(matrix2[i][k]);  
+            }
+            result.push_back(vec);
+        }
         
-//     // }
+    }
     
-      
-//   //}
-
-// }
+      return result;
+  }
 
 }
+
+

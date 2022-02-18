@@ -13,7 +13,7 @@ using Matrix = std::vector<std::vector<double>>;
 int main(int argc, char **argv)
 {
     
-    if (false) // make false to run unit-tests
+    if (true) // make false to run unit-tests
     {
         // teste khodam
         // khodam zadam
@@ -22,8 +22,9 @@ int main(int argc, char **argv)
 
         // int a {5};
         // int b {5};
-        result2={{10,20,3},{3,20,1},{20,1,10},{1,1,1},{2,2,2}};
-        result1={{2,7,4},{10,20,60}};
+        result2={{10,20,3},{3,20,1}};
+        result1={{2,7,4},{10,20,60,7}};
+        // algebra::show(result1);
         // result1 =algebra::random(15 , 20 , -100 , 100 );
         algebra::show(algebra::concatenate(result1,result2,0));
 
