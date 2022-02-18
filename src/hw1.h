@@ -6,6 +6,8 @@ namespace algebra {
     Matrix zeros(size_t , size_t );
     Matrix ones(int , int );
     void show(const Matrix& );
+    Matrix multiply(const Matrix& , double );
+    Matrix multiply(const Matrix& , const Matrix& );
     Matrix sum(const Matrix& , double );
     Matrix random(size_t , size_t , double , double );
     Matrix sum(const Matrix& , const Matrix& );

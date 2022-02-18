@@ -66,7 +66,15 @@ Matrix random(size_t n, size_t m, double min, double max)
     vector<double> vect;
     std::random_device rd;
     std::mt19937 mt(rd());
-    std::uniform_real_distribution<double> dist(min, max); 
+    if (min > max)
+    {
+        std::cout << "logic error"<< endl;
+        throw logic_error("Error");
+
+    }
+    if (min <= max)
+    {
+        std::uniform_real_distribution<double> dist(min, max); 
 
         for (int i=0 ; i < m ; i++)
         {
@@ -85,7 +93,10 @@ Matrix random(size_t n, size_t m, double min, double max)
         }
         
     
-     return a ;
+     
+    }
+    
+    return a;
         
 }
 
@@ -113,7 +124,7 @@ Matrix result;
 
 int rows = matrix. size();
 int cols = matrix[0]. size();
-
+result=zeros(rows,cols);
 for(int i=0;i<rows;i++)    
 {    
     for(int j=0;j<cols;j++)    
@@ -132,36 +143,42 @@ for(int i=0;i<rows;i++)
 Matrix multiply(const Matrix& matrix1, const Matrix& matrix2)
 {
     Matrix result;
+    if (matrix1.empty()==true || matrix2.empty()==true)
+    {
+        result=matrix1;
+        return result;
+    }
+    
+    int rows1 = matrix1.size();
+    int cols1 = matrix1[0].size();
+    cout << rows1<<"        "<<cols1;
+    int rows2 = matrix2.size();
+    int cols2 = matrix2[0].size();
 
-    int rows1 = matrix1. size();
-    int cols1 = matrix1[0]. size();
-
-    int rows2 = matrix2. size();
-    int cols2 = matrix2[0]. size();
-
+    result=zeros(rows1,cols2);
 
     if (cols1!=rows2)
     {
         cout << "Error! column of first matrix not equal to row of second.";
-
+        std::cout << "logic error"<< endl;
+        throw logic_error("Error");
        
     }
 
     
-    // Initializing elements of matrix mult to 0.
-    for(int i = 0; i < rows1; ++i)
-        for(int j = 0; j < cols2; ++j)
-        {
-            result[i][j]=0;
-        }
+    //Initializing elements of matrix mult to 0.
+    // for(int i = 0; i < rows1; ++i)
+    //     for(int j = 0; j < cols2; ++j)
+    //     {
+    //         result[i][j]=0;
+    //     }
 
-    // Multiplying matrix a and b and storing in array mult.
-    for(int i = 0; i < rows1; ++i)
-        for(int j = 0; j < cols2; ++j)
-            for(int k = 0; k < cols1; ++k)
-            {
-                result[i][j] += matrix1[i][k] * matrix2[k][j];
-            }
+    // for(int i = 0; i < rows1; ++i)
+    //     for(int j = 0; j < cols2; ++j)
+    //         for(int k = 0; k < cols1; ++k)
+    //         {
+    //             result[i][j] += matrix1[i][k] * matrix2[k][j];
+    //         }
 
     // // Displaying the multiplication of two matrix.
     // cout << endl << "Output Matrix: " << endl;
@@ -341,56 +358,56 @@ return det;
     return invout;    
      
  }
-  Matrix concatenate(const Matrix& matrix1, const Matrix& matrix2, int axis=0){
-      //=0 esh ghalat nist?
-      //age cols ha baham barabar nabashan fekr konam segmentation error bokhorim
-    size_t rows1 = matrix1. size();
-    size_t cols1 = matrix1[0]. size();
-    size_t rows2 = matrix2. size();
-    size_t cols2 = matrix2[0]. size();
-    if (axis==0)
-    {
-        Matrix result ;
-        for (size_t i = 0; i < rows1; i++)
-        {
-            vector<double> vec;
-        for (size_t j = 0; j < cols1; j++)
-        {
+//   Matrix concatenate(const Matrix& matrix1, const Matrix& matrix2, int axis=0){
+//       //=0 esh ghalat nist?
+//       //age cols ha baham barabar nabashan fekr konam segmentation error bokhorim
+//     size_t rows1 = matrix1. size();
+//     size_t cols1 = matrix1[0]. size();
+//     size_t rows2 = matrix2. size();
+//     size_t cols2 = matrix2[0]. size();
+//     if (axis==0)
+//     {
+//         Matrix result ;
+//         for (size_t i = 0; i < rows1; i++)
+//         {
+//             vector<double> vec;
+//         for (size_t j = 0; j < cols1; j++)
+//         {
             
-            vec.push_back(matrix1[i][j]);
+//             vec.push_back(matrix1[i][j]);
             
-        }
-        result.push_back(vec);
+//         }
+//         result.push_back(vec);
        
             
-        }
-        for (size_t i = 0; i < rows2; i++)
-        {
-            vector<double> vec;
-        for (size_t j = 0; j < cols2; j++)
-        {
-           vec.push_back(matrix2[i][j]);
+//         }
+//         for (size_t i = 0; i < rows2; i++)
+//         {
+//             vector<double> vec;
+//         for (size_t j = 0; j < cols2; j++)
+//         {
+//            vec.push_back(matrix2[i][j]);
             
-        }
-        result.push_back(vec);
+//         }
+//         result.push_back(vec);
        
             
-        }
+//         }
         
-      return result ;  
-     }
-    // if (axis==1)
-    // {
-    //     for (size_t i = 0; i < count; i++)
-    //     {
-    //         /* code */
-    //     }
+//       return result ;  
+//      }
+//     // if (axis==1)
+//     // {
+//     //     for (size_t i = 0; i < count; i++)
+//     //     {
+//     //         /* code */
+//     //     }
         
-    // }
+//     // }
     
       
-  }
+//   //}
+
+// }
 
 }
-
-

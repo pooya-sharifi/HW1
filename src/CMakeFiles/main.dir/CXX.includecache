@@ -6,25 +6,13 @@
 
 #IncludeRegexTransform: 
 
-/usr/src/app/src/hw1.h
+/usr/src/app/src/hw1.cpp
 vector
 -
-
-/usr/src/app/src/main.cpp
+random
+-
 iostream
 -
-gtest/gtest.h
+iomanip
 -
-hw1.h
-/usr/src/app/src/hw1.h
-vector
--
-
-/usr/src/app/src/unit_test.cpp
-gtest/gtest.h
-/usr/src/app/src/gtest/gtest.h
-gmock/gmock.h
-/usr/src/app/src/gmock/gmock.h
-hw1.h
-/usr/src/app/src/hw1.h
 

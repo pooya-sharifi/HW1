@@ -16,7 +16,7 @@ TEST(HW1Test, ZEROS) {
         for (const auto& elem : row)
             EXPECT_DOUBLE_EQ(elem, 0);
 }
-/*
+
 TEST(HW1Test, ONES) {
     Matrix matrix{algebra::ones(7, 3)};
 
@@ -79,7 +79,7 @@ TEST(HW1Test, MULTIPLY2) {
     // Caution: matrices with wrong dimensions cannot be multiplied
     EXPECT_THROW(algebra::multiply(Matrix{{1, 2, 3}, {4, 5, 6}}, Matrix{{1, 2, 3}, {4, 5, 6}}), std::logic_error);
 }
-
+/*
 TEST(HW1Test, MULTIPLY3) {
     Matrix matrix1{{-3, 3, 1.7}, {4, -4, 2.6}, {-5, 5, 3.5}};
     Matrix matrix2{{2.5}, {-2}, {-5.5}};
