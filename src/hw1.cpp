@@ -266,12 +266,18 @@ Matrix sum(const Matrix& matrix1, const Matrix& matrix2)
 }
 Matrix transpose(const Matrix& matrix)
 {
+    Matrix A,B;
+    if (matrix.empty()==true)
+    {
+        B={};
+        return B;
+    }
     int rows = matrix. size();
     int cols = matrix[0]. size();
-    Matrix A,B;
     A=zeros(rows,cols);
     B=zeros(cols,rows);
     A=matrix;
+    
     int i, j;
     for (i = 0; i < cols; i++)
         for (j = 0; j < rows; j++)
@@ -340,7 +346,7 @@ double determinant(const Matrix& matrix){
     
 return det;
 }
- Matrix inverse(const Matrix& matrix){
+Matrix inverse(const Matrix& matrix){
     size_t rows = matrix. size();
     size_t cols = matrix[0]. size();
     Matrix inv;
@@ -374,7 +380,7 @@ return det;
     return invout;    
      
  }
-  Matrix concatenate(const Matrix& matrix1, const Matrix& matrix2, int axis ){
+Matrix concatenate(const Matrix& matrix1, const Matrix& matrix2, int axis ){
       //=0 esh ghalat nist?
       //age cols ha baham barabar nabashan fekr konam segmentation error bokhorim
     Matrix result ;
@@ -442,7 +448,37 @@ return det;
     
       return result;
   }
+Matrix ero_swap(const Matrix& matrix, size_t r1, size_t r2){
+    int rows = matrix. size();
+    int cols = matrix[0]. size();
+    cout << rows<<endl;
+    cout << cols<<endl;
 
+    Matrix matstandin {zeros(rows,cols)};
+    matstandin=matrix;
+    if (r1>rows || r2>rows)
+    {
+        throw logic_error("Error");
+        std::cout<<"out of range";
+    }
+    for (size_t i = 0; i < rows; i++)
+    {
+        for (size_t j = 0; j < cols; j++)
+        {
+            if (i==r1)
+            {
+                cout << i<<"    "<<j<<endl;
+
+                matstandin[r2-1][j-1]=matrix[i-1][j-1];
+                matstandin[r1-1][j-1]=matrix[r2-1][j-1];
+            }
+            
+        }
+        
+    }
+    
+    return matstandin;
+}
 }
 
 

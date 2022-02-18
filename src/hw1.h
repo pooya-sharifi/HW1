@@ -16,6 +16,7 @@ namespace algebra {
     double determinant(const Matrix&);
     Matrix inverse(const Matrix&);
     Matrix concatenate(const Matrix&, const Matrix& , int);
+    Matrix ero_swap(const Matrix& , size_t , size_t);
 }
 
 #endif //AP_HW1_H
