@@ -2,8 +2,8 @@
 #include "gtest/gtest.h"
 #include "gmock/gmock.h"
 #include "hw1.h"
+using Matrix = std::vector<std::vector<double>>;
 
-/*
 TEST(HW1Test, ZEROS) {
     Matrix matrix{algebra::zeros(5, 6)};
 
@@ -16,7 +16,7 @@ TEST(HW1Test, ZEROS) {
         for (const auto& elem : row)
             EXPECT_DOUBLE_EQ(elem, 0);
 }
-
+/*
 TEST(HW1Test, ONES) {
     Matrix matrix{algebra::ones(7, 3)};
 

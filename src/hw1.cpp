@@ -10,7 +10,7 @@ namespace algebra
 {
 using Matrix = std::vector<std::vector<double>>;
 
-Matrix zero (int n,int m)
+Matrix zeros(size_t n, size_t m)
 {
 // int n {1};
 // int m {2};
@@ -181,7 +181,7 @@ Matrix result,zerom;
 int rows = matrix. size();
 int cols = matrix[0]. size();
 
-zerom = zero(rows,cols);
+zerom = zeros(rows,cols);
 
 for(int i=0;i<rows;i++)    
 {    
@@ -214,7 +214,7 @@ Matrix sum(const Matrix& matrix1, const Matrix& matrix2)
        
     }
     
-    zerom = zero(rows1,cols1);
+    zerom = zeros(rows1,cols1);
 
     for(int i=0;i<rows1;i++)    
     {    
@@ -236,8 +236,8 @@ Matrix transpose(const Matrix& matrix)
     int rows = matrix. size();
     int cols = matrix[0]. size();
     Matrix A,B;
-    A=zero(rows,cols);
-    B=zero(cols,rows);
+    A=zeros(rows,cols);
+    B=zeros(cols,rows);
     A=matrix;
     int i, j;
     for (i = 0; i < cols; i++)
@@ -253,7 +253,7 @@ Matrix minor(const Matrix& matrix, size_t n, size_t m)
     size_t rows = matrix. size();
     size_t cols = matrix[0]. size();
     Matrix A;
-    A=zero(rows-1,cols-1);
+    A=zeros(rows-1,cols-1);
     int crow =0;
     int ccol =0;
     for (size_t i = 0; i < rows; i++)
@@ -294,7 +294,7 @@ double determinant(const Matrix& matrix){
         det=matrix[0][0];
         return det; 
     }
-    getmin=zero(rows-1,cols-1);
+    getmin=zeros(rows-1,cols-1);
     for (int f = 0; f < cols; f++)
     {
         // Getting Cofactor of mat[0][f]
@@ -311,11 +311,11 @@ return det;
     size_t rows = matrix. size();
     size_t cols = matrix[0]. size();
     Matrix inv;
-    inv=zero(rows,cols);
+    inv=zeros(rows,cols);
     Matrix invout;
-    invout=zero(rows,cols);
+    invout=zeros(rows,cols);
     Matrix minerplaceholder;
-    minerplaceholder=zero(rows-1,cols-1);
+    minerplaceholder=zeros(rows-1,cols-1);
     int sign=1;
     if (rows!=cols){
          cout<<"this matrix does have an inverse"<<endl;
@@ -378,11 +378,15 @@ return det;
         }
         
       return result ;  
-    }
-    if (axis==1)
-    {
-        /* code */
-    }
+     }
+    // if (axis==1)
+    // {
+    //     for (size_t i = 0; i < count; i++)
+    //     {
+    //         /* code */
+    //     }
+        
+    // }
     
       
   }

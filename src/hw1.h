@@ -3,7 +3,7 @@
 #include <vector>
 using Matrix = std::vector<std::vector<double>>;
 namespace algebra {
-    Matrix zero (int ,int );
+    Matrix zeros(size_t , size_t );
     Matrix ones(int , int );
     void show(const Matrix& );
     Matrix sum(const Matrix& , double );
