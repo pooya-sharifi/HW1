@@ -379,6 +379,11 @@ return det;
         
       return result ;  
     }
+    if (axis==1)
+    {
+        /* code */
+    }
+    
       
   }
 
