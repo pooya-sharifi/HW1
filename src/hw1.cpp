@@ -145,7 +145,7 @@ Matrix multiply(const Matrix& matrix1, const Matrix& matrix2)
     Matrix result;
     if (matrix1.empty()==true || matrix2.empty()==true)
     {
-        result=matrix1;
+        result={};
         return result;
     }
     
@@ -173,12 +173,12 @@ Matrix multiply(const Matrix& matrix1, const Matrix& matrix2)
     //         result[i][j]=0;
     //     }
 
-    // for(int i = 0; i < rows1; ++i)
-    //     for(int j = 0; j < cols2; ++j)
-    //         for(int k = 0; k < cols1; ++k)
-    //         {
-    //             result[i][j] += matrix1[i][k] * matrix2[k][j];
-    //         }
+    for(int i = 0; i < rows1; ++i)
+        for(int j = 0; j < cols2; ++j)
+            for(int k = 0; k < cols1; ++k)
+            {
+                result[i][j] += matrix1[i][k] * matrix2[k][j];
+            }
 
     // // Displaying the multiplication of two matrix.
     // cout << endl << "Output Matrix: " << endl;
@@ -193,8 +193,12 @@ Matrix multiply(const Matrix& matrix1, const Matrix& matrix2)
 }
 
 Matrix sum(const Matrix& matrix, double c){
-
 Matrix result,zerom;
+if (matrix.empty()==true)
+{
+    result=matrix;
+    return result;
+}
 int rows = matrix. size();
 int cols = matrix[0]. size();
 
@@ -218,16 +222,28 @@ for(int i=0;i<rows;i++)
 
 Matrix sum(const Matrix& matrix1, const Matrix& matrix2)
 {
+     Matrix result,zerom;
+    if (matrix1.empty()==true && matrix2.empty()==true)
+    {
+        result={};
+        return result;
+    }
+    if (matrix1.empty()==true || matrix2.empty()==true)
+    {
+        throw logic_error("Error");
+    }
+    
+    
     int rows1 = matrix1. size();
     int cols1 = matrix1[0]. size();
     int rows2 = matrix2. size();
     int cols2 = matrix2[0]. size();
 
-    Matrix result,zerom;
-    if (cols1!=cols2 & rows1!=rows2)
+   
+    if (cols1!=cols2 && rows1!=rows2)
     {
         cout << "Error! matrix dont have the same dimentions";
-
+        throw logic_error("Error"); 
        
     }
     
