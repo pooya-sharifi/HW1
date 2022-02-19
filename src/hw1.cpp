@@ -325,9 +325,19 @@ Matrix minor(const Matrix& matrix, size_t n, size_t m)
 }
 double determinant(const Matrix& matrix){
     double det =0;
+    if (matrix.empty()==true)
+    {
+        det=1;
+        return det;
+    }
     Matrix getmin;
     size_t rows = matrix. size();
     size_t cols = matrix[0]. size();
+    if (rows!=cols)
+    {
+        throw logic_error("error");
+    }
+    
     int sign = 1;
     if (rows == 1 && cols==1){
         det=matrix[0][0];
@@ -347,29 +357,35 @@ double determinant(const Matrix& matrix){
 return det;
 }
 Matrix inverse(const Matrix& matrix){
+    Matrix inv;
+    if (matrix.empty()==true)
+    {
+        inv={};
+        return inv;
+    }
     size_t rows = matrix. size();
     size_t cols = matrix[0]. size();
-    Matrix inv;
     inv=zeros(rows,cols);
     Matrix invout;
     invout=zeros(rows,cols);
-    Matrix minerplaceholder;
-    minerplaceholder=zeros(rows-1,cols-1);
-    int sign=1;
+    double sign=1;
     if (rows!=cols){
          cout<<"this matrix does have an inverse"<<endl;
+         throw logic_error ("error");
          return matrix;
     }
     for (int i = 0; i < rows; i++){
         for (int j = 0; j < cols; j++){
         
             inv[j][i]=sign*determinant(minor(matrix,i,j));
-           cout<<i<<"    "<<j<<endl;
-            sign=-1*sign;
+            // sign=-1*sign;
+    }
+    if (determinant(matrix)==0)
+    {
+        throw logic_error("error");
     }
     
     }
-    show(inv);
     for (int i = 0; i < rows; i++){
         for (int j = 0; j < cols; j++){
            
@@ -456,7 +472,7 @@ Matrix ero_swap(const Matrix& matrix, size_t r1, size_t r2){
 
     Matrix matstandin {zeros(rows,cols)};
     matstandin=matrix;
-    if (r1>rows || r2>rows)
+    if (r1+1>rows || r2+1>rows)
     {
         throw logic_error("Error");
         std::cout<<"out of range";
@@ -469,8 +485,8 @@ Matrix ero_swap(const Matrix& matrix, size_t r1, size_t r2){
             {
                 cout << i<<"    "<<j<<endl;
 
-                matstandin[r2-1][j-1]=matrix[i-1][j-1];
-                matstandin[r1-1][j-1]=matrix[r2-1][j-1];
+                matstandin[r2][j]=matrix[i][j];
+                matstandin[r1][j]=matrix[r2][j];
             }
             
         }
@@ -479,6 +495,85 @@ Matrix ero_swap(const Matrix& matrix, size_t r1, size_t r2){
     
     return matstandin;
 }
+Matrix ero_multiply(const Matrix& matrix, size_t r, double c){
+    int rows = matrix. size();
+    int cols = matrix[0]. size();
+    Matrix matstandin{zeros(rows,cols)} ;
+    if (r>rows )
+    {
+        throw logic_error("Error");
+        std::cout<<"out of range";
+    }
+    for (size_t i = 0; i < rows; i++)
+    {
+        for (size_t j = 0; j < cols; j++)
+        {
+            if (i==r)
+            {
+                matstandin[r][j]=matrix[r][j]*c;
+            }
+            else{
+                matstandin[i][j]=matrix[i][j];
+            }
+            
+        }
+        
+        
+    }
+    return matstandin;
 }
+Matrix ero_sum(const Matrix& matrix, size_t r1, double c, size_t r2){
+    
+    int rows = matrix. size();
+    int cols = matrix[0]. size();
+    Matrix matstandin {matrix};
+    if (r1>rows || r2>rows)
+    {
+        throw logic_error("Error");
+        std::cout<<"out of range";
+    }
+    for (size_t j = 0; j < cols; j++)
+    {
+        matstandin[r2][j]+=matrix[r1][j]*c;
+    }
+    return matstandin;
+
+}
+Matrix upper_triangular(const Matrix& matrix){
+    
+    if (matrix.empty()==true)
+    {
+        Matrix inv {};
+        return inv;
+    }
+    int rows = matrix. size();
+    int cols = matrix[0]. size();
+    if (rows!=cols)
+    {
+        throw logic_error("error");
+    }
+    
+    Matrix matstandin {matrix};
+    for (size_t j = 0; j < cols; j++)
+    {
+        for (size_t i = 1; i < rows; i++)
+        {
+            if(i+j==rows){
+                break;
+            }
+            double a =matstandin[i+j][j];
+            double b =matstandin[j][j];
+            double c=a/b;
+            matstandin=ero_sum(matstandin,j,-c,i+j);
+        }
+        
+        
+    }
+    
+    return matstandin;
+
+}
+}
+
 
 

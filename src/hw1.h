@@ -17,6 +17,9 @@ namespace algebra {
     Matrix inverse(const Matrix&);
     Matrix concatenate(const Matrix&, const Matrix& , int);
     Matrix ero_swap(const Matrix& , size_t , size_t);
+    Matrix ero_multiply(const Matrix& , size_t , double );
+    Matrix ero_sum(const Matrix& , size_t , double , size_t);
+    Matrix upper_triangular(const Matrix& );
 }
 
 #endif //AP_HW1_H
