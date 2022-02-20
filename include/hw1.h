@@ -4,7 +4,7 @@
 using Matrix = std::vector<std::vector<double>>;
 namespace algebra {
     Matrix zeros(size_t , size_t );
-    Matrix ones(int , int );
+    Matrix ones(size_t , size_t);
     void show(const Matrix& );
     Matrix multiply(const Matrix& , double );
     Matrix multiply(const Matrix& , const Matrix& );
@@ -21,5 +21,4 @@ namespace algebra {
     Matrix ero_sum(const Matrix& , size_t , double , size_t);
     Matrix upper_triangular(const Matrix& );
 }
-
 #endif //AP_HW1_H
